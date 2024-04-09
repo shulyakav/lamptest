@@ -289,32 +289,32 @@ module "asg" {
   depends_on = [module.alb]
 }
 
+#have no time to finish it.
+# module "vpc_endpoints" {
+#   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
+#   version = "~> 5.0"
 
-module "vpc_endpoints" {
-  source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
-  version = "~> 5.0"
+#   vpc_id = module.vpc.vpc_id
 
-  vpc_id = module.vpc.vpc_id
+#   endpoints = { for service in toset(["ssm", "ssmmessages", "ec2messages"]) :
+#     replace(service, ".", "_") =>
+#     {
+#       service             = service
+#       subnet_ids          = module.vpc.intra_subnets
+#       private_dns_enabled = true
+#       tags                = { Name = "LAMP" }
+#     }
+#   }
 
-  endpoints = { for service in toset(["ssm", "ssmmessages", "ec2messages"]) :
-    replace(service, ".", "_") =>
-    {
-      service             = service
-      subnet_ids          = module.vpc.intra_subnets
-      private_dns_enabled = true
-      tags                = { Name = "LAMP" }
-    }
-  }
+#   create_security_group      = true
+#   security_group_name_prefix = "LAMP-vpc-endpoints-"
+#   security_group_description = "VPC endpoint security group"
+#   security_group_rules = {
+#     ingress_https = {
+#       description = "HTTPS from subnets"
+#       cidr_blocks = module.vpc.intra_subnets_cidr_blocks
+#     }
+#   }
 
-  create_security_group      = true
-  security_group_name_prefix = "LAMP-vpc-endpoints-"
-  security_group_description = "VPC endpoint security group"
-  security_group_rules = {
-    ingress_https = {
-      description = "HTTPS from subnets"
-      cidr_blocks = module.vpc.intra_subnets_cidr_blocks
-    }
-  }
-
-  tags = local.tags
-}
+#   tags = local.tags
+# }

@@ -5,7 +5,7 @@ resource "random_password" "master"{
 }
 
 resource "aws_secretsmanager_secret" "password" {
-  name = "mysql4-cluster-password"
+  name = "mysql88-cluster-password"
 }
 
 resource "aws_secretsmanager_secret_version" "password" {
