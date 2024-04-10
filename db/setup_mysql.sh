@@ -18,7 +18,7 @@ temp_pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk '{print $NF
 
 
 # Login to MySQL and reset root password and configure the database, user, and table
-mysql -u root -p$temp_pass <<QUERY_INPUT
+mysql -u root -p$temp_pass --connect-expired-password <<QUERY_INPUT
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${database_password}';
 CREATE DATABASE ${database_name};
 CREATE USER '${database_user}' IDENTIFIED BY '${database_password}';

@@ -1,11 +1,12 @@
 resource "random_password" "master"{
   length           = 25
   special          = true
+  min_special      = 5
   override_special = "()*$%^"
 }
 
 resource "aws_secretsmanager_secret" "password" {
-  name = "mysql77-cluster-password"
+  name = "mysql777-cluster-password"
 }
 
 resource "aws_secretsmanager_secret_version" "password" {
