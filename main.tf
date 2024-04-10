@@ -141,7 +141,7 @@ module "alb" {
   version = "~> 9.8.0"
   name    = "lamp-alb"
   vpc_id  = module.vpc.vpc_id
-  subnets = module.vpc.private_subnets
+  subnets = module.vpc.public_subnets
 
   # For example only
   enable_deletion_protection = false
