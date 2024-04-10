@@ -22,7 +22,7 @@ mysql -u root -p$temp_pass <<QUERY_INPUT
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${database_password}';
 CREATE DATABASE ${database_name};
 CREATE USER '${database_user}' IDENTIFIED BY '${database_password}';
-GRANT ALL PRIVILEGES ON ${database_name}.* TO '${database_user}';
+GRANT ALL PRIVILEGES ON ${database_name}.* TO '${database_user}'@'%';
 FLUSH PRIVILEGES;
 
 USE ${database_name};

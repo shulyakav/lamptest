@@ -31,10 +31,9 @@ cd /var/www/flaskapp
 sudo python3 -m venv venv
 source venv/bin/activate
 sudo chown -R ec2-user:ec2-user /var/www/flaskapp
-pip install Flask mysql-connector-python pymysql
 
 # Install Flask and MySQL connector
-sudo pip3 install Flask mysql-connector-python pymysql
+sudo pip3 install Flask mysql-connector-python pymysql cryptography
 
 cat > /var/www/flaskapp/app.py << 'EOF'
 from flask import Flask, render_template
