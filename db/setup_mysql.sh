@@ -32,20 +32,3 @@ CREATE TABLE ${table_name} (
 );
 INSERT INTO ${table_name} (data) VALUES ('1'), ('created by Artem S');
 QUERY_INPUT
-
-##
-mysql -u root -p$temp_pass --connect-expired-password <<QUERY_INPUT
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'n7*EHjMutGCbeA!WT_Tb';
-
-CREATE DATABASE simpledb;
-CREATE USER 'mqsqladmin' IDENTIFIED BY 'n7*EHjMutGCbeA!WT_Tb';
-GRANT ALL PRIVILEGES ON simpledb.* TO 'mqsqladmin';
-FLUSH PRIVILEGES;
-
-USE simpledb;
-CREATE TABLE simpletable (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    data VARCHAR(255) NOT NULL
-);
-INSERT INTO simpletable (data) VALUES ('1'), (' created by Artem S');
-QUERY_INPUT

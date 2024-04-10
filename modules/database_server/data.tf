@@ -16,7 +16,7 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 data "aws_secretsmanager_secret" "password" {
-  name = "mysql88-cluster-password"
+  name = "mysql77-cluster-password"
 }
 
 data "aws_secretsmanager_secret_version" "password" {
