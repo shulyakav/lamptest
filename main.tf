@@ -114,6 +114,17 @@ module "database_server" {
   availability_zone = element(module.vpc.azs, 0)
   subnet_id              = element(module.vpc.private_subnets, 0) 
   #Ssubnet_id              = element(module.vpc.public_subnets, 0) # fro test only
+  create_iam_instance_profile = true
+  iam_role_name               = "DB-TestSSM"
+  iam_role_path               = "/ec2/"
+  iam_role_description        = "Complete IAM role example"
+  iam_role_tags = {
+    CustomIamRole = "Yes"
+  }
+
+  iam_role_policies = {
+    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+  }
   vpc_security_group_ids = [module.db_server_sg.security_group_id]
   user_data = templatefile("./db/setup_mysql.sh", {
     database_user     = var.database_user,
